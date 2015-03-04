@@ -5,8 +5,8 @@ class KeyParse
   end
 
   def key
-  #  key_values = 5.times.map {key.sample}
-    [4,1,5,2,1]
+   #key_values = 5.times.map {key.sample}
+   [4,1,5,2,1]
   end
 
   def key_valid?

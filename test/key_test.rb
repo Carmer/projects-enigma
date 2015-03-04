@@ -5,6 +5,14 @@ require './lib/key'
 
 class KeyMinitest < Minitest::Test
 
+  def test_it_has_random_key
+    skip
+    k = KeyParse.new
+    sample = []
+    10.times {k.key << sample}
+    assert sample.uniq
+    end
+
   def test_key_is_passed_into_new_instance_of_key
     k = KeyParse.new
     assert_equal [4,1,5,2,1], k.key
