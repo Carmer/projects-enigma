@@ -7,16 +7,22 @@ class Offset
   attr_accessor :date
 
 #  Time.now.strftime("%m/%d/%Y")
-  def initialize(date = "03/03/2015")
-    @date = date.split("/")
+
+  def input_date(date = "03/03/2015")
+    date = date.split("/")
   end
 
   def date_parsed
-    date.replace([date[0],date[1],date[2][-2..-1]]).join.to_i
+    holder = input_date.join
+    date = []
+    date.push(holder[0..1])
+    date.push(holder[2..3])
+    date.push(holder[-2..-1])
+    date.join
   end
 
   def sq_date
-    date_parsed * date_parsed
+    date_parsed.to_i * date_parsed.to_i
   end
 
   def find_offset_digits
@@ -40,7 +46,7 @@ class Offset
   end
 
 end
-
+# 
 # off = Offset.new
 #
 # print off.sq_date

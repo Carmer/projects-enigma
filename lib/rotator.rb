@@ -1,5 +1,6 @@
 require "./lib/offset"
 require "./lib/key"
+require "./lib/offset"
 
 class Rotator
 

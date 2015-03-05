@@ -39,7 +39,7 @@ class EncryptionMinitest < Minitest::Test
 
   def test_it_can_make_a_final_encryptes_message
     secret = Encryption.new("do i work")
-    assert_equal [], secret.final_encrypted_message
+    assert_equal "o5m8ia3ev", secret.final_encrypted_message
   end
 
 end

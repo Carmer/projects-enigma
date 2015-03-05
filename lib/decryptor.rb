@@ -1,12 +1,12 @@
-require "./lib/rotator"
+require "./lib/rotator"  # ~> LoadError: cannot load such file -- ./lib/rotator
 
 class Decryptor
 
-  attr_reader   :rotator,
-                :offset
+  attr_reader   :rotator
 
   attr_accessor :message,
                 :decrypted_message
+
 
   CHAR_MAP = [*("a".."z"), *("0".."9"), " ", ".", ","]
 
@@ -14,7 +14,6 @@ class Decryptor
     @message           = message
     @decrypted_message = []
     @rotator           = Rotator.new
-    @offset            = Offset.new
   end
 
   def parsed_message
@@ -60,10 +59,19 @@ class Decryptor
     decrypt_b_elements
     decrypt_c_elements
     decrypt_d_elements
-    decrypted_message
+    decrypted_message.join
   end
 end
 
-d = Decryptor.new("2.ql2.ql")
+  # d = Decryptor.new
+  # d.decrypt_elements
 
-print d.final_decrypted_message
+
+# print d.parsed_message("2.ql2.ql")
+
+# ~> LoadError
+# ~> cannot load such file -- ./lib/rotator
+# ~>
+# ~> /Users/Carmer/.rvm/rubies/ruby-2.0.0-p598/lib/ruby/site_ruby/2.0.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+# ~> /Users/Carmer/.rvm/rubies/ruby-2.0.0-p598/lib/ruby/site_ruby/2.0.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+# ~> /Users/Carmer/Documents/Turing/projects/enigma/lib/decryptor.rb:1:in `<main>'

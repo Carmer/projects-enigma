@@ -2,8 +2,7 @@ require "./lib/rotator"
 
 class Encryption
 
-  attr_reader   :rotator,
-                :offset
+  attr_reader   :rotator
 
   attr_accessor :message,
                 :encrypted_message
@@ -14,7 +13,6 @@ class Encryption
     @message           = message
     @encrypted_message = []
     @rotator           = Rotator.new
-    @offset            = Offset.new
   end
 
   def parsed_message
@@ -60,7 +58,7 @@ class Encryption
     encrypt_b_elements
     encrypt_c_elements
     encrypt_d_elements
-    encrypted_message
+    encrypted_message.join
   end
 end
 
