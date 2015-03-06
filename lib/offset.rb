@@ -1,32 +1,7 @@
 class Offset
-  attr_reader   :offset_a,
-                :offset_b,
-                :offset_c,
-                :offset_d
 
-  attr_accessor :date
-
-#  Time.now.strftime("%m/%d/%Y")
-
-  def input_date(date = "03/03/2015")
-    date = date.split("/")
-  end
-
-  def date_parsed
-    holder = input_date.join
-    date = []
-    date.push(holder[0..1])
-    date.push(holder[2..3])
-    date.push(holder[-2..-1])
-    date.join
-  end
-
-  def sq_date
-    date_parsed.to_i * date_parsed.to_i
-  end
-
-  def find_offset_digits
-    sq_date.to_s[-4..-1]
+  def initialize(date = Time.now.strftime("%m/%d/%Y"))
+    @date = date.split("/")
   end
 
   def offset_a
@@ -45,8 +20,23 @@ class Offset
     find_offset_digits[3].to_i
   end
 
+  private
+
+    def date_parsed
+      holder = @date.join
+      date = []
+      date.push(holder[0..1])
+      date.push(holder[2..3])
+      date.push(holder[-2..-1])
+      date.join
+    end
+
+    def sq_date
+      date_parsed.to_i * date_parsed.to_i
+    end
+
+    def find_offset_digits
+      sq_date.to_s[-4..-1]
+    end
+
 end
-# 
-# off = Offset.new
-#
-# print off.sq_date

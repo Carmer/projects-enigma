@@ -1,25 +1,29 @@
 require "./lib/offset"
 require "./lib/rotator"
-require "./lib/decryptor"
-require "./lib/key"
+# require "./lib/decryptor"
 
 class Crack
 
-  attr_reader :off,
-              :rotator
+  attr_accessor :message,
+                :date
 
-  def initialize(message)
-    @off     = Offset.new
-    @rotator = Rotator.new
-    @decrypt = Decryptor.new
-    @message = message
+  attr_reader  :off,
+               :rotator
+
+  CHAR_MAP = [*("a".."z"), *("0".."9"), " ", ".", ","]
+
+  def initialize(date, message)
+    @rotator     = Rotator.new
+    @off         = Offset.new
+    @decryptor   = Decryptor.new(message)
+    @message     = message
+    @date        = date
+   # @key_bank    = Array()
   end
 
-  def input_date(date)
-    date
+  def parsed_message
+    message.split("")
   end
-
-
 
 
 

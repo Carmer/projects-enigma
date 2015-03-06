@@ -5,12 +5,9 @@ require "./lib/rotator"
 class RotatorMinitest < Minitest::Test
 
   def test_it_has_a_CHAR_MAP
-    skip
     sum = Rotator.new
     assert_equal [*("a".."z"), *("0".."9"), " ", ".", ","], CHAR_MAP
   end
-
-
 
   def test_it_can_find_the_total_rotator_value_for_a
     sum = Rotator.new
