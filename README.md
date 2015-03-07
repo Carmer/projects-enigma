@@ -2,7 +2,7 @@
 
 # what the fuck we just did
 
-* Dependency injection/ducks
+<!-- * Dependency injection/ducks
 * SRP
 * Designing with testability in mind (separting key generation from slicing the key)
 
@@ -34,4 +34,4 @@ encryptor = Encryptor.new(message, key, date)
 
 encrypted_message = enryptor.encrypt
 
-File.write(target_file, encrypted_message)
+File.write(target_file, encrypted_message) -->
