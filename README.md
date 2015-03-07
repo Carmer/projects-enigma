@@ -1,8 +1,9 @@
 # projects-enigma
-
+<!-- 
 # what the fuck we just did
 
-<!-- * Dependency injection/ducks
+
+* Dependency injection/ducks
 * SRP
 * Designing with testability in mind (separting key generation from slicing the key)
 
