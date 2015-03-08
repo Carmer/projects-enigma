@@ -1,0 +1,43 @@
+require './test/test_helper'
+require './lib/encryptor'
+
+class EncryptorTest < Minitest::Test
+
+  def setup
+    @k        = Key.new([4,1,5,2,1])
+    @off      = Offset.new("03/03/2015")
+    @rotator  = Rotator.new(@k, @off)
+    @char     = CharacterMapGenerator.new(@rotator)
+    @encrypt  = Encryptor.new("do i work", @char)
+  end
+
+  def test_there_is_a_message_passed_in_to_be_encrypted
+    skip #--> the parsed message method is covered in encrypt elements method. Made parsed message a private method so this test no longer passes
+    assert_equal "do i work", @encrypt.message
+  end
+
+  def test_it_can_break_the_message_into_single_character_pieces
+    skip #--> the parsed message method is covered in encrypt elements method. Made parsed message a private method so this test no longer passes
+    assert_equal ["d", "o", " ", "i", " ", "w", "o", "r", "k"], @encrypt.parsed_message
+  end
+
+  def test_it_can_encrypt_the_elements_in_position_a
+    assert_equal ["o", nil, nil, nil, "i", nil, nil, nil, "v"], @encrypt.encrypt_elements(0,@char.char_map_rot_a)
+  end
+
+  def test_it_can_encrypt_the_elements_in_position_b
+    assert_equal [nil, "5", nil, nil, nil, "a"], @encrypt.encrypt_elements(1,@char.char_map_rot_b)
+  end
+
+  def test_it_can_encrypt_the_elements_in_position_c
+    assert_equal [nil, nil, "m", nil, nil, nil, "3"], @encrypt.encrypt_elements(2,@char.char_map_rot_c)
+  end
+
+  def test_it_can_encrypt_the_elements_in_position_d
+    assert_equal [nil, nil, nil, "8", nil, nil, nil, "e"], @encrypt.encrypt_elements(3,@char.char_map_rot_d)
+  end
+
+  def test_it_can_make_a_final_encryptes_message
+    assert_equal "o5m8ia3ev", @encrypt.final_encrypted_message
+  end
+end
