@@ -45,7 +45,7 @@ class EncryptorTest < Minitest::Test
     assert_equal ",ids5rz9 o.,2l.h4 24e2. peocp.", @encrypt.final_encrypted_message
   end
 
-  def test_it_can_write_to_a_fil
+  def test_it_can_write_to_a_file
     assert @encrypt.respond_to?(:write_to_file)
   end
 end

@@ -44,4 +44,8 @@ class DecryptorMinitest < Minitest::Test
   def test_it_can_make_a_final_decrypted_message
     assert_equal "do i work", @secret.final_decrypted_message
   end
+
+  def test_it_can_write_to_file
+    assert @secret.respond_to?(:write_to_file)
+  end
 end

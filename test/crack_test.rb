@@ -11,4 +11,8 @@ class CrackTest < Minitest::Test
     @victory.crack_code
     assert @victory.cracked?
   end
+
+  def test_it_can_write_to_file
+    assert @victory.respond_to?(:write_to_file)
+  end
 end
