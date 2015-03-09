@@ -4,11 +4,11 @@ require './lib/encryptor'
 class EncryptorTest < Minitest::Test
 
   def setup
-    @k        = Key.new("41521")
-    @off      = Offset.new("030315")
+    @k        = Key.new("13772")
+    @off      = Offset.new("030815")
     @rotator  = Rotator.new(@k, @off)
     @char     = CharacterMapGenerator.new(@rotator)
-    @encrypt  = Encryptor.new("do i work", @char)
+    @encrypt  = Encryptor.new("victory to all in 1502 ..end..", @char)
   end
 
   def test_there_is_a_message_passed_in_to_be_encrypted
@@ -41,7 +41,11 @@ class EncryptorTest < Minitest::Test
     assert_equal [nil, nil, nil, "8", nil, nil, nil, "e"], @encrypt.encrypt_elements(3,@char.d_char_map)
   end
 
-  def test_it_can_make_a_final_encryptes_message
-    assert_equal "o5m8ia3ev", @encrypt.final_encrypted_message
+  def test_it_can_make_a_final_encrypted_message
+    assert_equal ",ids5rz9 o.,2l.h4 24e2. peocp.", @encrypt.final_encrypted_message
+  end
+
+  def test_it_can_write_to_a_fil
+    assert @encrypt.respond_to?(:write_to_file)
   end
 end

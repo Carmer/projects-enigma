@@ -50,12 +50,13 @@ class Decryptor
 end
 
 if __FILE__ == $0
-  @k        = Key.new(ARGV[2])
-  @off      = Offset.new(ARGV[3])
-  @rotator  = Rotator.new(@k, @off)
-  @char     = CharacterMapGenerator.new(@rotator)
+@k        = Key.new(ARGV[2])
+@off      = Offset.new(ARGV[3])
+@rotator  = Rotator.new(@k, @off)
+@char     = CharacterMapGenerator.new(@rotator)
 
-  decrypt   = Decryptor.new(@encrypted_message, @char)
+decrypt   = Decryptor.new(@encrypted_message, @char)
 
-  decrypt.final_decrypted_message
+decrypt.final_decrypted_message
+decrypt.write_to_file
 end

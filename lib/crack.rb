@@ -7,8 +7,9 @@ class Crack
   def initialize(encrypted_message = nil, date = nil)
     encrypted_message ? @encrypted_message = encrypted_message : @encrypted_message = File.read(ARGV[0])
     date ? @date = date : @date = ARGV[2]
-    @cracked         = false
-    @brute_key       = 0
+    @decrypted_message  = ARGV[1]
+    @cracked            = false
+    @brute_key          = 0
   end
 
   def crack_code
@@ -32,9 +33,17 @@ class Crack
   def cracked?
     @cracked
   end
+
+  def write_to_file
+    output         = File.open(@decrypted_message, "w")
+    decrypted_text = crack_code
+    output.write(decrypted_text)
+    output.close
+  end
 end
 
 if __FILE__ == $0
   c = Crack.new
   c.crack_code
+  c.write_to_file
 end
