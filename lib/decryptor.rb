@@ -2,8 +2,6 @@ require './lib/character_map_generator'
 
 class Decryptor
 
-  attr_reader :date
-
   CHAR_MAP = [*("a".."z"), *("0".."9"), " ", ".", ","]
 
   def initialize(encrypted_message = nil, char_map)
