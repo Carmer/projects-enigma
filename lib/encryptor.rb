@@ -7,9 +7,9 @@ class Encryptor
 
   def initialize(message, char_map = CharacterMapGenerator.new)
     message ? @message = message : @message = File.read(ARGV[0])
-    @encrypted_message = []
+    @encrypted_message     = []
     @new_encrypted_message = ARGV[1]
-    @char_map          = char_map
+    @char_map              = char_map
   end
 
   def final_encrypted_message

@@ -2,8 +2,6 @@ require './lib/decryptor'
 
 class Crack
 
-  CHAR_MAP = [*("a".."z"), *("0".."9"), " ", ".", ","]
-
   def initialize(encrypted_message = nil, date = nil)
     encrypted_message ? @encrypted_message = encrypted_message : @encrypted_message = File.read(ARGV[0])
     date ? @date = date : @date = ARGV[2]
