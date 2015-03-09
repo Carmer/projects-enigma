@@ -2,24 +2,23 @@ require './lib/key_generator'
 
 class Key
 
-  def initialize(key = KeyGenerator.new.generate_key)
+  def initialize(key = KeyGenerator.new.parsed_key)
     @key = key
   end
 
   def key_rotate_a
-    @key[0..1].join.to_i
+    @key[0..1].to_i
   end
 
   def key_rotate_b
-    @key[1..2].join.to_i
+    @key[1..2].to_i
   end
 
   def key_rotate_c
-    @key[2..3].join.to_i
+    @key[2..3].to_i
   end
 
   def key_rotate_d
-    @key[3..4].join.to_i
+    @key[3..4].to_i
   end
-
 end

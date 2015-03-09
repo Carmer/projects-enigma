@@ -7,4 +7,8 @@ class KeyGenerator
   def generate_key
     5.times.map {@key_bank.sample}
   end
+
+  def parsed_key
+    generate_key.join
+  end
 end

@@ -4,7 +4,7 @@ require './lib/offset'
 class Offsettest < Minitest::Test
 
   def setup
-    @off = Offset.new("03/03/2015")
+    @off = Offset.new("030315")
   end
 
   def test_it_can_sq_date

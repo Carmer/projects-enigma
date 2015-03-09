@@ -4,14 +4,9 @@ require "./lib/rotator"
 class RotatorTest < Minitest::Test
 
   def setup
-    @k   = Key.new([4,1,5,2,1])
-    @off = Offset.new("03/03/2015")
+    @k   = Key.new("41521")
+    @off = Offset.new("030315")
     @sum = Rotator.new(@k, @off)
-  end
-
-  def test_it_has_a_CHAR_MAP
-    skip
-    assert_equal [*("a".."z"), *("0".."9"), " ", ".", ","], CHAR_MAP
   end
 
   def test_it_can_find_the_total_rotator_value_for_a

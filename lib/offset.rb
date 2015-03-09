@@ -1,7 +1,7 @@
 class Offset
 
-  def initialize(date = Time.now.strftime("%m/%d/%Y"))
-    @date = date.split("/")
+  def initialize(date = Time.now.strftime("%m%d%y"))
+    @date = date.split("")
   end
 
   def offset_a
@@ -38,5 +38,4 @@ class Offset
     def find_offset_digits
       sq_date.to_s[-4..-1]
     end
-
 end

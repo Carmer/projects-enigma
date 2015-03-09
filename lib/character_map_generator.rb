@@ -4,61 +4,38 @@ class CharacterMapGenerator
 
   CHAR_MAP = [*("a".."z"), *("0".."9"), " ", ".", ","]
 
-  def initialize(rotator = Rotator.new )
+  def initialize(rotator = Rotator.new)
     @rotator = rotator
   end
 
-  def char_map_rot_a
-    a_new_char_map = []
-    var = @rotator.a_final_rotate_value % 39
-    until a_new_char_map.size == 39
-      a_new_char_map.push(CHAR_MAP[var])
-      var += 1
-      if var > 38
-        var = 0
-      end
-    end
-    a_new_char_map
+  def a_char_map
+    char_map_generation_mechanism(@rotator.a_final_rotate_value)
   end
 
-  def char_map_rot_b
-    b_char_map = []
-    var = @rotator.b_final_rotate_value % 39
-    until b_char_map.size == 39
-      b_char_map.push(CHAR_MAP[var])
-      var += 1
-      if var > 38
-        var = 0
-      end
-    end
-    b_char_map
+  def b_char_map
+    char_map_generation_mechanism(@rotator.b_final_rotate_value)
   end
 
-  def char_map_rot_c
-    c_char_map = []
-    c = @rotator.c_final_rotate_value % 39
-    until c_char_map.size == 39
-      c_char_map.push(CHAR_MAP[c])
-      c += 1
-      if c > 38
-        c = 0
-      end
-    end
-    c_char_map
+  def c_char_map
+    char_map_generation_mechanism(@rotator.c_final_rotate_value)
   end
 
-  def char_map_rot_d
-    d_char_map = []
-    d = @rotator.d_final_rotate_value % 39
-    until d_char_map.size == 39
-      d_char_map.push(CHAR_MAP[d])
-      d += 1
-      if d > 38
-        d = 0
-      end
-    end
-    d_char_map
+  def d_char_map
+    char_map_generation_mechanism(@rotator.d_final_rotate_value)
   end
 
+  private
 
+    def char_map_generation_mechanism(final_rotation_value)
+      new_char_map = []
+      var = final_rotation_value % 39
+      until new_char_map.size == 39
+        new_char_map.push(CHAR_MAP[var])
+        var += 1
+        if var > 38
+          var = 0
+        end
+      end
+      new_char_map
+    end
 end
