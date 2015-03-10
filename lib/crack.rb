@@ -34,7 +34,7 @@ class Crack
     @cracked
   end
 
-  def writer(m = nil, d = nil)
+  def writer
     if @w.file_exists?(@decrypted_message)
       puts "This file already exists. Do you want to (o)verwrite the file or (c)ancel the operation?"
       until @done == true

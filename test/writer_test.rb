@@ -12,9 +12,6 @@ class WriterTest < Minitest::Test
   end
 
   def test_file_exists
-    assert @w.file_exists?("tester.txt")
+    assert @w.file_exists?("exist_test_file.txt")
   end
-
-
-
 end
