@@ -37,7 +37,7 @@ encrypted_message = enryptor.encrypt
 
 File.write(target_file, encrypted_message) -->
 
-___           ___                       ___           ___           ___
+"___           ___                       ___           ___           ___
 /  /\         /__/\        ___          /  /\         /__/\         /  /\
 /  /:/_        \  \:\      /  /\        /  /:/_       |  |::\       /  /::\
 /  /:/ /\        \  \:\    /  /:/       /  /:/ /\      |  |:|:\     /  /:/\:\
@@ -61,7 +61,7 @@ Y88b.   Y88..88P Y88b 888 Y8b.          Y88b.    888    888  888 Y88b.    888 "8
 .
 ..
 ...
-
+"
 
 Enigma will encrypt your secret message and write your message inside a specified file.
 
