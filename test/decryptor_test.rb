@@ -32,6 +32,6 @@ class DecryptorTest < Minitest::Test
   end
 
   def test_it_can_write_to_file
-    assert @secret.respond_to?(:writer)
+    assert @secret.respond_to?(:writes)
   end
 end

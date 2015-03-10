@@ -32,6 +32,6 @@ class EncryptorTest < Minitest::Test
   end
 
   def test_it_can_write_to_a_file
-    assert @encrypt.respond_to?(:writer)
+    assert @encrypt.respond_to?(:writes)
   end
 end

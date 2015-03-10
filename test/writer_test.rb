@@ -14,4 +14,12 @@ class WriterTest < Minitest::Test
   def test_file_exists
     assert @w.file_exists?("exist_test_file.txt")
   end
+
+  def test_it_responds_to_overwrite_input
+    assert @w.overwrite?("o")
+  end
+
+  def test_it_responds_to_cancel_input
+    assert @w.cancel?("c")
+  end
 end

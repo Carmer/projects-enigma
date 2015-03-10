@@ -1,10 +1,10 @@
 require './test/test_helper'
-require './lib/crack'
+require './lib/cracker'
 
 class CrackTest < Minitest::Test
 
   def setup
-    @victory = Crack.new("o5m8ia3evonyp4syj", "030315")
+    @victory = Cracker.new("o5m8ia3evonyp4syj", "030315")
   end
 
   def test_it_can_get_crack_the_code
@@ -13,6 +13,6 @@ class CrackTest < Minitest::Test
   end
 
   def test_it_can_write_to_file
-    assert @victory.respond_to?(:writer)
+    assert @victory.respond_to?(:writes)
   end
 end

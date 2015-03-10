@@ -10,4 +10,12 @@ class Writer
   def file_exists?(message)
     File.exist?(message)
   end
+
+  def overwrite?(input)
+    input.downcase == "o"
+  end
+
+  def cancel?(input)
+    input.downcase == "c"
+  end
 end

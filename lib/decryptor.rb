@@ -1,13 +1,17 @@
 require './lib/character_map_generator'
 require './lib/writer'
+require './lib/printer'
 
 class Decryptor
 
   CHAR_MAP = [*("a".."z"), *("0".."9"), " ", ".", ","]
 
+  attr_reader :encrypted_message
+
   def initialize(encrypted_message = nil, char_map)
-    encrypted_message ? @encrypted_message = encrypted_message : @encrypted_message = File.read(ARGV[0])
-    @w                 = Writer.new
+    @encrypted_message = encrypted_message || File.read(ARGV[0])
+    @writer            = Writer.new
+    @printer           = Printer.new
     @new_message       = ARGV[1]
     @decrypted_message = []
     @char_map          = char_map
@@ -35,24 +39,24 @@ class Decryptor
     @decrypted_message
   end
 
-  def writer
-    if @w.file_exists?(@new_message)
-      puts "This file already exists. Do you want to (o)verwrite the file or (c)ancel the operation?"
+  def writes
+    if @writer.file_exists?(@new_message)
+      puts @printer.file_exists_message
       until @done == true
         input = $stdin.gets.chomp
-        if input.downcase == "o"
-          @w.write_to_file(@new_message, @decrypted_message)
+        if @writer.overwrite?(input)
+          @writer.write_to_file(@new_message, @decrypted_message)
           @done = true
-          puts "Created '#{ARGV[1]}' with the key #{ARGV[2]} and date #{ARGV[3]}."
-        elsif input.downcase == "c"
-          puts "Operation Canceled!"
+          puts @printer.overwrite_message(@new_message, ARGV[2], ARGV[3])
+        elsif @writer.cancel?(input)
+          puts @printer.canceled_message
           @done = true
         else
-          puts "Enter 'o' to overwrite, or 'c' to cancel."
+          puts @printer.options_message
         end
       end
-    else @w.write_to_file(@new_message, @decrypted_message)
-      puts "Created '#{ARGV[1]}' with the key #{ARGV[2]} and date #{ARGV[3]}."
+    else @writer.write_to_file(@new_message, @decrypted_message)
+      puts @printer.overwrite_message(@new_message, ARGV[2], ARGV[3])
     end
   end
 
@@ -61,18 +65,4 @@ class Decryptor
     def parsed_message
       @encrypted_message.split("")
     end
-end
-
-if __FILE__ == $0
-  @k        = Key.new(ARGV[2])
-  @off      = Offset.new(ARGV[3])
-  @rotator  = Rotator.new(@k, @off)
-  @char     = CharacterMapGenerator.new(@rotator)
-
-  decrypt   = Decryptor.new(@encrypted_message, @char)
-
-  print File.read(File.join(__dir__, "enigma_logo.txt"))
-
-  decrypt.final_decrypted_message
-  decrypt.writer
 end

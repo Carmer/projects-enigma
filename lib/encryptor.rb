@@ -1,5 +1,6 @@
 require './lib/character_map_generator'
 require './lib/writer'
+require './lib/printer'
 
 class Encryptor
 
@@ -7,7 +8,8 @@ class Encryptor
 
   def initialize(message = nil, char_map = CharacterMapGenerator.new)
     message ? @message = message : @message = File.read(ARGV[0])
-    @w                       = Writer.new
+    @writer                  = Writer.new
+    @printer                 = Printer.new
     @new_encrypted_message   = ARGV[1]
     @encrypted_message       = []
     @char_map                = char_map
@@ -35,45 +37,28 @@ class Encryptor
     @encrypted_message
   end
 
-  def writer
-    if @w.file_exists?(@new_encrypted_message)
-      puts "This file already exists. Do you want to (o)verwrite the file or (c)ancel the operation?"
+  def writes
+    if @writer.file_exists?(@new_encrypted_message)
+      puts @printer.file_exists_message
       until @done == true
         input = $stdin.gets.chomp
-        if input.downcase == "o"
-          @w.write_to_file(@new_encrypted_message, @encrypted_message)
+        if @writer.overwrite?(input)
+          @writer.write_to_file(@new_encrypted_message, @encrypted_message)
           @done = true
-          puts "Created '#{ARGV[1]}' with the key #{ARGV[2]} and date #{ARGV[3]}."
-        elsif input.downcase == "c"
-          puts "Operation Canceled!"
+        elsif @writer.cancel?(input)
+          puts @printer.canceled_message
           @done = true
         else
-          puts "Enter 'o' to overwrite, or 'c' to cancel."
+          puts @printer.options_message
         end
       end
-    else write_to_file(@new_encrypted_message)
+    else @writer.write_to_file(@new_encrypted_message, @encrypted_message)
     end
   end
 
   private
-  
+
     def parsed_message
       @message.split("")
     end
-end
-
-if __FILE__ == $0
-  @k        = Key.new
-  @off      = Offset.new
-  @rotator  = Rotator.new(@k, @off)
-  @char     = CharacterMapGenerator.new(@rotator)
-
-  encrypt = Encryptor.new(@message, @char)
-
-  print File.read(File.join(__dir__, "enigma_logo.txt"))
-
-  encrypt.final_encrypted_message
-  encrypt.writer
-
-  puts "Created '#{ARGV[1]}' with the key #{@k.key} and date #{@off.date.join}."
 end
