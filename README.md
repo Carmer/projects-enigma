@@ -43,26 +43,29 @@ Enigma will encrypt your secret message and write your message inside a specifie
 Enter the following Input in your terminal, and you will receive the following output:
 
 ##Input:
-##ruby ./lib/encrypt.rb example_message.txt example_encrypted_message.txt
+ruby ./lib/encrypt.rb example_message.txt example_encrypted_message.txt
 
-##Output: Created 'example_encrypted_message.txt' with the key 82648 and date 030815.
-##the key is randomly generated and the date is the current date.
+##Output:
+Created 'example_encrypted_message.txt' with the key 82648 and date 030815.
+the key is randomly generated and the date is the current date.
 
 Enigma will also decrypt your message. To decrypt the message contained inside a file, and to save the decrypted message inside a file  different file, enter the following Input in your terminal. You will receive the following output.
 
 ##Input:
-##ruby ./lib/decrypt.rb encrypted_example_message.txt decrypted_example_message.txt 82648 030815
+ruby ./lib/decrypt.rb encrypted_example_message.txt decrypted_example_message.txt 82648 030815
 
 (The last two entered elements are the key and the date which you will need to specify in order to decrypt the message.)
 
-##Output: Created 'decrypted_example_message.txt' with the key 82648 and date 030815
+##Output:
+ Created 'decrypted_example_message.txt' with the key 82648 and date 030815
 
 Enigma will also crack a code. All you need to know the date of the transmitted message. To crack a message contained inside a file, and to save the decrypted message inside a different file, enter the following into your terminal.
 
 ##Input:
-##ruby ./lib/crack.rb encrypted_example_message.txt cracked_example_message.txt 030815
+ruby ./lib/crack.rb encrypted_example_message.txt cracked_example_message.txt 030815
 
-##Output: Created 'cracked_example_message.txt' with the key (key found from cracking code) and date 030815
+##Output:
+ Created 'cracked_example_message.txt' with the key (key found from cracking code) and date 030815
 
 
 

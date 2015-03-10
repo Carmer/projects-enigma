@@ -54,15 +54,4 @@ class Cracker
       puts "Created '#{ARGV[1]}' with the key #{ARGV[2]} and date #{ARGV[3]}."
     end
   end
-
 end
-
-# if __FILE__ == $0
-#
-#   c = Crack.new
-#
-#   print File.read(File.join(__dir__, "enigma_logo.txt"))
-#
-#   c.crack_code
-#   c.writer
-# end
