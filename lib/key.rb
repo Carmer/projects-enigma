@@ -2,6 +2,8 @@ require './lib/key_generator'
 
 class Key
 
+  attr_reader :key
+
   def initialize(key = KeyGenerator.new.parsed_key)
     @key = key
   end

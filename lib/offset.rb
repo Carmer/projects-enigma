@@ -1,5 +1,7 @@
 class Offset
 
+  attr_reader :date
+
   def initialize(date = Time.now.strftime("%m%d%y"))
     @date = date.split("")
   end
