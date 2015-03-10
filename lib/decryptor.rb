@@ -6,7 +6,6 @@ class Decryptor
 
   CHAR_MAP = [*("a".."z"), *("0".."9"), " ", ".", ","]
 
-  attr_reader :encrypted_message
 
   def initialize(encrypted_message = nil, char_map)
     @encrypted_message = encrypted_message || File.read(ARGV[0])

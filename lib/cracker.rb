@@ -1,15 +1,18 @@
 require './lib/decryptor'
 require './lib/writer'
+require './lib/printer'
 
 class Cracker
 
   def initialize(encrypted_message = nil, date = nil)
     @encrypted_message  = encrypted_message || File.read(ARGV[0])
     @date               = date || ARGV[2]
-    @w                  = Writer.new
+    @writer             = Writer.new
+    @printer            = Printer.new
     @decrypted_message  = ARGV[1]
     @cracked            = false
     @brute_key          = 0
+    @done               = false
   end
 
   def crack_code
@@ -35,23 +38,23 @@ class Cracker
   end
 
   def writes
-    if @w.file_exists?(@decrypted_message)
-      puts "This file already exists. Do you want to (o)verwrite the file or (c)ancel the operation?"
+    if @writer.file_exists?(@decrypted_message)
+      puts @printer.file_exists_message
       until @done == true
         input = $stdin.gets.chomp
-        if input.downcase == "o"
-          @w.write_to_file(@decrypted_message, crack_code.split(""))
+        if @writer.overwrite?(input)
+          @writer.write_to_file(@decrypted_message, crack_code.split(""))
+          puts @printer.overwrite_message(@decrypted_message, @brute_key, @date)
           @done = true
-          puts "Created '#{ARGV[1]}' with the key #{@brute_key} and date #{ARGV[2]}."
-        elsif input.downcase == "c"
-          puts "Operation Canceled!"
+        elsif @writer.cancel?(input)
+          puts @printer.canceled_message
           @done = true
         else
-          puts "Enter 'o' to overwrite, or 'c' to cancel."
+          puts @printer.options_message
         end
       end
-    else @w.write_to_file(@new_message, @decrypted_message)
-      puts "Created '#{ARGV[1]}' with the key #{ARGV[2]} and date #{ARGV[3]}."
+    else @writer.write_to_file(@decrypted_message, crack_code.split(""))
+      puts @printer.overwrite_message(@decrypted_message, @brute_key, @date)
     end
   end
 end
